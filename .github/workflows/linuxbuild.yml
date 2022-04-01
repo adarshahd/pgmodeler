@@ -4,9 +4,6 @@ on:
   push:
     branches: [ master, develop, 0.9.*, '*fix*', '*change*', '*support*' ]
     tags: 0.9.*
-    
-  pull_request:
-    branches: [ master, develop, 0.9.* ]
 
 jobs:
   build:
@@ -14,7 +11,7 @@ jobs:
 
     strategy:
       matrix:
-        qt: ['5.15.0', '5.14.2', '5.13.2', '5.12.9', '5.11.3', '5.10.1', '5.9.9']
+        qt: ['5.15.0']
 
     steps:
     - uses: actions/checkout@v2
@@ -29,6 +26,12 @@ jobs:
 
     - name: Building pgModeler
       run: make -j6
-     
+
     - name: Deploying pgModeler
       run: make install
+     
+    - name: Store the artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: pgModeler
+          path: /home/runner/work/pgmodeler/pgmodeler/build
