@@ -31,7 +31,7 @@ jobs:
       run: make install
      
     - name: Store the artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: pgModeler
-          path: /home/runner/work/pgmodeler/pgmodeler/build
+      uses: actions/upload-artifact@v3
+      with:
+        name: pgModeler
+        path: /home/runner/work/pgmodeler/pgmodeler/build
